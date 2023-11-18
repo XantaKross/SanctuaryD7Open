@@ -1,0 +1,12 @@
+DOCUMENTATION FILE FOR:  CORE
+
+
+NEED:
+I needed a folder to hold all the main components of darwin. This core folder was the result.
+This folder of darwin contains the essential files, functions etc. Without these files and algothims
+there is no darwin.
+
+SUB-FILES:
+-_common.py
+-Brain.py
+-Connector.py

@@ -1,0 +1,35 @@
+
+--------------------------------------------------------------------------------Worklog Structure;
+Should be of a simple format.
+
+space
+Log number.
+(date):
+(time) your work described in one sentence;
+space
+
+
+--------------------------------------------------------------------------------File structure;
+-All versions of the project be saved in the main "Server" folder
+
+-Each version will have 4 folders. Core, edge, and serverbase, apps, templates.
+
+
+--------------------------------------------------------------------------------Sub-File structure;
+-Core. It's the folder which will have the main/fundemental components of darwin. [Backend]
+
+-Edge. Every extra and additional functionality like databases, modules will be saved here.
+
+-serverbase. The folder used by django to create the backend of darwin's server.
+
+-templates. The folder used by django to create and save the frontend of darwin's server.
+
+
+--------------------------------------------------------------------------------Sub-File structure;
+
+
+
+
+--------------------------------------------------------------------------------Further Instructions;
+-Check each folder inside documentation to find details about specific functions etc.
+

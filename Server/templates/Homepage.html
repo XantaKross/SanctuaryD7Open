@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Adapt.AI
+{% endblock %}
+
+
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+      function getInputValue() {
+        let inputVal = document.getElementById("ibox").value;
+        document.getElementById("ibox").value = '';
+
+        $.ajax({
+            type:'POST',
+            url: 'dialogue',
+            data: {csrfmiddlewaretoken: "{{ csrf_token }}",
+                   'command': inputVal,},
+
+           success: function(data) {
+                let dbox = document.getElementById("dbox")
+                dbox.innerText = data['text']['content'];
+
+                let bbox = document.getElementById('boombox')
+                bbox.src = `data:${data['audio']['type']};base64,${data['audio']['content']}`;
+                bbox.play()
+           }
+        });
+
+      }
+    </script>
+
+    <style>
+    .heading {
+        position: fixed;
+        width: 65px;
+        height: 55px;
+        font-size: 250%;
+        float: right;
+        top: -2%;
+        color: rgb(0, 220, 220);
+    }
+
+    .dialoguebox {
+        text-decoration: none;
+        border-bottom: 2px solid red;
+        position: absolute;
+        width: 100%;
+        top: 25%;
+        left: 0%;
+        font-size: 135%;
+        color: rgb(0, 240, 240);
+        text-align: left;
+    }
+
+    .inputbox {
+        border-radius: 100px;
+        position: fixed;
+        height: 3.75%;
+        width: 25%;
+        bottom: 30%;
+        left: 37.5%;
+        font-size: 100%;
+        background-color: rgb(255, 255, 255);
+    }
+    </style>
+
+    <p class="heading">
+        Adapt
+    </p>
+
+    <p class="dialoguebox", id="dbox">
+        Welcome Master.
+    </p>
+
+    <input class="inputbox", id="ibox", type="text">
+    <input id="submit", type="submit", onclick="getInputValue();">
+    <audio id='boombox' autoplay="autoplay" src="" />
+
+
+    <script>
+        document.getElementById('submit').style.visibility = 'hidden';
+        var cmd = document.getElementById("ibox");
+
+        cmd.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("submit").click();
+          }
+        });
+    </script>
+
+
+
+
+{% endblock %}

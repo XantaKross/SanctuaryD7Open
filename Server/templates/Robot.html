@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script>
+        function resetTimer() {
+            $.ajax({
+            type:'POST',
+            url: 'robot',
+            data: {csrfmiddlewaretoken: "{{ csrf_token }}",
+                   'reset': 1,},
+
+           success: function(data) {
+                box = document.getElementById('output_box');
+                box.innerText = `Angle: Resetted, Distance: Resetted`;
+           }
+        });
+        }
+
+        function sendTime() {
+            for (let i = 0; i < 10; i++) {
+                const sendingTime = window.performance.timeOrigin + window.performance.now();
+
+                $.ajax({
+                type:'POST',
+                url: 'robot',
+                data: {csrfmiddlewaretoken: "{{ csrf_token }}",
+                       'sendingTime': sendingTime,},
+
+               success: function(data) {
+                    box = document.getElementById('output_box');
+                    box.innerText = `Angle: ${data['Angle']}, Distance: ${data['Distance']}`;
+               }
+           }
+        });
+
+        }
+    </script>
+
+    <p id="output_box" style="color:LightGray"></p>
+    <button id='button' onclick='sendTime();'> Signal </button>
+    <button id="reset" onclick="resetTimer();"> Reset Signal </button>
+
+{% endblock %}

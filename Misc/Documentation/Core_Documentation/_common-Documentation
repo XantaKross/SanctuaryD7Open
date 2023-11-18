@@ -1,0 +1,39 @@
+NAME: Common functions file.
+PURPOSE: Has all the common functions that will be used by various functions throughout darwin.
+
+1) Class: Bubble;
+Idea: This acts as a two way dictionary or linked lists.
+of the formatting,
+
+[key1, key2, key3 ...] <---> [value1, value2, value3, ...]
+        'A'                             'B'
+
+
+whereby any values in A can lead to B and vice versa.
+
+Inner Functions:
+1)) init     (self): initialises the key and value lists, along with a common index list.
+2)) add      (key, value): adds new key-value pair to the end of lists.
+3)) retrieve (key_or_value, tag): when tag==1; it retrieves index value of key or value
+                                  when tag==0; it retrieves value if given is key or key if given is value.
+4)) print_obj (self):  prints the bubble object in proper formatting.
+
+
+2) Function: purify(string);
+Idea: Takes a string and removes certain specific things from it. Hence "purifies" the string.
+
+3) Function: find_func(list);
+Idea: returns the "key" attribute of a key-value from list, whose value is the highest.
+
+4) Function: Compress(list);
+Idea: Takes a multi-dimension list and compresses it to a single dimension.
+that is,
+
+takes matrix (2D) (NxM sized) -----> creates vector (1D) (N*M x 1 sized)
+
+5) Function: Merge(dict1, dict2);
+Idea: Merges two Dictionaries.
+
+6) Function: check_run(file_name, function_name, user_command, current_time_details);
+Idea: extracts a given function from a python file, then injects the function with parameters
+then runs in the terminal and finally returns a string output that is obtained from runnning the function.
